@@ -4,8 +4,8 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-
-var articleOne={
+var articles={
+ 'article-One':{
   title:'Article-one',
   heading:'Article one',
   date:'Oct6 2016',
@@ -13,7 +13,26 @@ var articleOne={
             something abour the article.something abour the article.something abour the article.<br/>
             something abour the article.something abour the article.something abour the article.
         </p>`
-};
+},
+ 'article-two':{
+  title:'Article-two',
+  heading:'Article two',
+  date:'Oct7 2016',
+  content:` <p>
+            something abour the article.something abour the article.something abour the article.<br/>
+            something abour the article.something abour the article.something abour the article.
+        </p>`
+},
+'article-three':{
+  title:'Article-three',
+  heading:'Article three',
+  date:'Oct8 2016',
+  content:` <p>
+            something abour the article.something abour the article.something abour the article.<br/>
+            something abour the article.something abour the article.something abour the article.
+        </p>`
+}
+}
 function createTemplate(data){
  var title=data.title;
  var heading=data.heading;
@@ -55,14 +74,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-   res.send(createTemplate(articleOne));
-});
-app.get('/article-two',function(req,res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-app.get('/article-three',function(req,res){
- res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+app.get('/:articleName',function(req,res){
+    var articleName =req.params.articleName
+   res.send(createTemplate(articles[articleName]));
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
