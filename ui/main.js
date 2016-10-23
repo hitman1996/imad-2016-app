@@ -13,8 +13,8 @@ button.onClick=function(){
         }
     
     //render the var in correct span
-    }
+    };
     //make request
     request.open('GET','http://hitman1996.imad.hasura-app.io/counter',true);
     request.send(null);
-}
+};
