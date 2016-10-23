@@ -28,6 +28,7 @@ ul {
     position: fixed;
     height: 100%;
     overflow: auto;
+    color:#000;
 }
 
 li a {
